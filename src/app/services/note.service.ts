@@ -10,8 +10,11 @@ export class NoteService {
 
   private apiUrl: string;
 
-  private newNoteSource = new Subject<Note>();
-  newNoteProvider = this.newNoteSource.asObservable();
+  private refreshListSource = new Subject<Note>();
+  refreshListProvider = this.refreshListSource.asObservable();
+
+  private editNoteSource = new Subject<Note>();
+  editNoteProvider = this.editNoteSource.asObservable();
 
   constructor(private http: HttpClient) {
     this.apiUrl = "https://fiap-notes-api.herokuapp.com";
@@ -43,8 +46,12 @@ export class NoteService {
     },
   ];
 
-  notifyNewNoteAdded(note: Note){
-    this.newNoteSource.next(note);
+  notifyRefreshList(note: Note){
+    this.refreshListSource.next(note);
+  }
+
+  notifyEditNote(note: Note){
+    this.editNoteSource.next(note);
     // this.newNoteSource.error("algum exception");
   }
 
@@ -58,6 +65,10 @@ export class NoteService {
 
   postNotes(textNote: string){
     return this.http.post<Note>(`${this.apiUrl}/notes`, {text: textNote});
+  }
+
+  putNotes(idNote: number, textNote: string){
+    return this.http.post<Note>(`${this.apiUrl}/notes/${idNote}`, {text: textNote});
   }
   
 }

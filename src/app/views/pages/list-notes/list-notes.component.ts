@@ -16,10 +16,10 @@ export class ListNotesComponent implements OnInit {
 
   //injetando a dependência do service
   constructor(private noteService: NoteService) {
-    this.subscription = this.noteService.newNoteProvider.subscribe({
+    this.subscription = this.noteService.refreshListProvider.subscribe({
       next: (note: Note) => {
-        // this.getApiNotes();
-        this.notes.push(note);
+        alert(`A nota "${note.text}" foi salva com sucesso!`)
+        this.getApiNotes();
       },
       error: () => {}
     });

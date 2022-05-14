@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Note } from 'src/app/services/@types/note';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-note',
@@ -24,7 +25,9 @@ export class NoteComponent implements OnInit {
   @Output()
   notify = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private noteService: NoteService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +35,10 @@ export class NoteComponent implements OnInit {
   confirmRemove(){
     if(confirm("Deseja realmente apagar?"))
       this.notify.emit();
+  }
+
+  editNote(){
+      this.noteService.notifyEditNote(this.noteProp);
   }
 
 }

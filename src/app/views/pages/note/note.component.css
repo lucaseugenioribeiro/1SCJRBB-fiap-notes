@@ -14,8 +14,13 @@ article p:first-child {
   margin-bottom: 10px;
 }
 
-article .material-icons {
+article .container {
   position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.material-icons {
   bottom: 5px;
   right: 5px;
 
