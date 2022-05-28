@@ -75,6 +75,7 @@ export class FormNoteComponent implements OnInit {
   }
 
   success(note: Note){
+    console.log("Success PUT")
     this.resetForm();
     this.noteService.notifyRefreshList(note);
   }

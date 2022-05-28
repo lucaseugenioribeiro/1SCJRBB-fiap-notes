@@ -17,8 +17,9 @@ export class ListNotesComponent implements OnInit {
   //injetando a dependência do service
   constructor(private noteService: NoteService) {
     this.subscription = this.noteService.refreshListProvider.subscribe({
-      next: (note: Note) => {
-        alert(`A nota "${note.text}" foi salva com sucesso!`)
+      next: (note: Note) => {        
+        console.log("constructor")
+        alert(`A nota foi salva com sucesso!`)
         this.getApiNotes();
       },
       error: () => {}

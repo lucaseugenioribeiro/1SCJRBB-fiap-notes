@@ -47,6 +47,7 @@ export class NoteService {
   ];
 
   notifyRefreshList(note: Note){
+    console.log("notifyRefreshList")
     this.refreshListSource.next(note);
   }
 
@@ -68,7 +69,7 @@ export class NoteService {
   }
 
   putNotes(idNote: number, textNote: string){
-    return this.http.post<Note>(`${this.apiUrl}/notes/${idNote}`, {text: textNote});
+    return this.http.put<Note>(`${this.apiUrl}/notes/${idNote}`, {text: textNote});
   }
   
 }
